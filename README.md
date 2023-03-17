@@ -12,4 +12,5 @@ linia n:         "x1 x2 x3 ... xk" /// starile finale separate printr-un spatiu
 Cuvantul pe care vrem sa il verificam se afla in fisierul "input.txt"
 
 Rezultatul se va afla in fisierul "output.txt" -> care ne spune daca cuvantul este acceptat sau nu
+
 In cazul in care cuvantul este acceptat se va afisa pe urmatoarea linie si drumul parcurs pentru validarea acestuia
