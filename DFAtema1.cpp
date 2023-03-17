@@ -130,13 +130,12 @@ void solve(){
     dfs(conversie[stare_initiala],cuvant);
     if(acceptat == true){
         fout << "acceptat" << '\n';
-        for(int i=1;i<=dim_sol;i++){
+        /*for(int i=1;i<=dim_sol;i++){
             fout << sol[i] << '\n';
+        }*/
+        for(int i=1;i<=dim_drum;i++){
+            fout <<  "->" << drum[i];
         }
-        for(int i=1;i<dim_drum;i++){
-            fout << drum[i] << "->";
-        }
-        fout << drum[dim_drum];
     } else {
         fout << "neacceptat";
     }
