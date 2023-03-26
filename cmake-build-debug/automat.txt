@@ -1,12 +1,11 @@
-q0
-q0 b q0
-q0 a q1
-q1 a q1
-q1 b q2
-q2 a q1
-q2 b q3
-q3 b q1
-q3 a q4
-q4 a q4
-q4 b q4
-q4
+node0
+node0 a node1
+node1 a node2
+node2 b node3
+node3 a node4
+node4 b node1
+node4 a node5
+node3 c node6
+node5 b node5
+node6 c node6
+node5 node6

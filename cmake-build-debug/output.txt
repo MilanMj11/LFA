@@ -1,2 +1,2 @@
 acceptat
-->q0->q0->q0->q0->q0->q0->q0->q1->q1->q1->q1->q1->q2->q3->q1->q1->q2->q3->q4->q4->q4->q4->q4->q4->q4->q4
+->node0->node1->node2->node3->node4->node1->node2->node3->node4->node5->node5->node5->node5->node5->node5

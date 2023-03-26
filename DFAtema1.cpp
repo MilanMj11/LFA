@@ -70,6 +70,7 @@ void procesare_stari_finale(string s){
 }
 
 void citire(){
+    /// atentie sa nu pun randuri goale in plus in input
     getline(fin_aux,stare_initiala);
     getline(fin,stare_initiala);
     //fout << stare_initiala << '\n';
