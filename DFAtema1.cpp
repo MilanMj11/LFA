@@ -78,6 +78,7 @@ void citire(){
     int nr_linii = 0;
     while(!fin_aux.eof()){
         getline(fin_aux,s);
+        if(s.size()==0) continue;
         nr_linii++;
         //fout << s << '\n';
     }
@@ -85,6 +86,7 @@ void citire(){
     while(!fin.eof()){
         getline(fin,s);
         aux++;
+        if(aux>nr_linii) break;
         if(aux == nr_linii){
             procesare_stari_finale(s);
         } else
@@ -93,6 +95,56 @@ void citire(){
 }
 
 bool acceptat = false;
+
+void bfs(string cuvant){
+    vector <int> vdrum;
+    vdrum.clear();
+    queue < pair< vector<int> , pair<string,int> > > q;
+    q.push({vdrum,make_pair(cuvant,conversie[stare_initiala])});
+    bool acceptat = false;
+    while(!q.empty()){
+        pair< vector<int> , pair<string,int> > stare_curenta = q.front();
+        string cuv = stare_curenta.second.first;
+        int node = stare_curenta.second.second;
+        vector <int> drum_aux = stare_curenta.first;
+        drum_aux.push_back(node);
+        /// conditie oprire
+        if(cuv.size()==0){
+            bool ok = false;
+            for(int i=1;i<=cnt_stari_finale;i++)
+                if(conv[node] == stari_finale[i]){
+                    acceptat = true;
+                    ok = true;
+                }
+            if(ok == true) {
+                for(int i=0;i<drum_aux.size();i++){
+                    fout << "->" << conv[drum_aux[i]];
+                }
+                fout << '\n';
+            }
+
+            /// aici as vrea sa afisez si drumurile
+            /// deci ar trebui sa retin drumul pana in aceasta stare
+        }
+        ///
+
+        for(int i=0;i<graf[node].size();i++){
+            pair<int,char> aux = graf[node][i];
+            int vecin = aux.first;
+            char litera = aux.second;
+            if(litera == cuv[0]){
+                string cuv_aux = cuv;
+                string cuvant_nou = cuv.erase(0,1);
+                cuv = cuv_aux;
+                q.push({drum_aux,make_pair(cuvant_nou,vecin)});
+            }
+        }
+        q.pop();
+    }
+    if(acceptat == true){
+        fout << "acceptat" << '\n';
+    } else fout << "neacceptat" << '\n';
+}
 
 void dfs(int node,string cuvant){
     drum[++dim_drum] = conv[node];
@@ -128,18 +180,19 @@ void solve(){
     /// citesc un cuvant pe care vreau sa-l verific
     string cuvant;
     f_input >> cuvant;
-    dfs(conversie[stare_initiala],cuvant);
-    if(acceptat == true){
-        fout << "acceptat" << '\n';
-        /*for(int i=1;i<=dim_sol;i++){
-            fout << sol[i] << '\n';
-        }*/
-        for(int i=1;i<=dim_drum;i++){
-            fout <<  "->" << drum[i];
-        }
-    } else {
-        fout << "neacceptat";
-    }
+    bfs(cuvant);
+//    dfs(conversie[stare_initiala],cuvant);
+//    if(acceptat == true){
+//        fout << "acceptat" << '\n';
+//        /*for(int i=1;i<=dim_sol;i++){
+//            fout << sol[i] << '\n';
+//        }*/
+//        for(int i=1;i<=dim_drum;i++){
+//            fout <<  "->" << drum[i];
+//        }
+//    } else {
+//        fout << "neacceptat";
+//    }
 }
 
 int main() {
